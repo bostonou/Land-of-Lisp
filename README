@@ -1,13 +1,7 @@
 # land-of-lisp
 
-FIXME: write description
+I'm learning Clojure by working through Land of Lisp.
 
-## Usage
+Copyright (C) 2012 Jonathan Boston
 
-FIXME: write
-
-## License
-
-Copyright (C) 2012 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
+Distributed under the MIT License
