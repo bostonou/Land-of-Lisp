@@ -2,10 +2,15 @@
   (:use [land-of-lisp.ch5])
   (:use [clojure.test]))
 
-(deftest describe-location-test
-  (is (= (describe-location :living-room nodes) (nodes :living-room)))
-  (is (= (describe-location :garden nodes) (nodes :garden)))
-  (is (= (describe-location :attic nodes) (nodes :attic))))
+(testing "Locations"
+  (deftest describe-location-test
+    (is (= (describe-location :living-room nodes) (nodes :living-room)))
+    (is (= (describe-location :garden nodes) (nodes :garden)))
+    (is (= (describe-location :attic nodes) (nodes :attic))))
+
+  (deftest find-next-location-test
+    (is (= (find-next-location 'west (edges :living-room)) :garden))
+    (is (= (find-next-location 'upstairs (edges :living-room)) :attic))))
 
 (testing "Paths"
   (deftest describe-path-test

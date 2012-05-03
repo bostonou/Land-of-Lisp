@@ -14,6 +14,14 @@
 (def object-locations {:living-room '[whiskey bucket]
                         :garden '[chain frog]})
 
+(defn find-next-location
+  [direction edges]
+  (let [[edge & rest] edges]
+    (cond
+      (nil? edge) nil
+      (= (second edge) direction) (first edge)
+      true (find-next-location direction rest))))
+
 (defn describe-location
   [location descriptions]
   (descriptions location))
@@ -45,3 +53,13 @@
   (concat (describe-location (deref user-location) nodes)
           (describe-paths (deref user-location) edges)
           (describe-objects (deref user-location) object-locations)))
+
+(defn walk
+  [direction]
+  (let [avail-edges (edges (deref user-location))
+        location (find-next-location direction avail-edges)]
+    (cond
+      (nil? location) '[you cannot go that way.]
+      true (do
+             (dosync (ref-set user-location location))
+             (look)))))
