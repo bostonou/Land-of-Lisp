@@ -1,6 +1,8 @@
 (ns land-of-lisp.ch5
   [:require land-of-lisp.core])
 
+(def user-location (ref :living-room))
+
 (def nodes {:living-room '[you are in the living room. a wizard is snoring loudly on the couch.]
             :garden '[you are in a beautiful garden. there is a well in front of you.]
             :attic '[you are in the attic. there is a giant welding torch in the corner.]})
@@ -36,3 +38,10 @@
 (defn describe-objects
   [location obj-locs]
   (apply #'concat (map #'describe-object (obj-locs location))))
+
+;non-functional UI
+(defn look
+  []
+  (concat (describe-location (deref user-location) nodes)
+          (describe-paths (deref user-location) edges)
+          (describe-objects (deref user-location) object-locations)))
