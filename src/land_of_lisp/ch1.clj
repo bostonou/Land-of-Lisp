@@ -13,3 +13,8 @@
   []
   (dosync (ref-set big (dec (guess-my-number))))
   (guess-my-number))
+
+(defn bigger
+  []
+  (dosync (ref-set small (inc (guess-my-number))))
+  (guess-my-number))

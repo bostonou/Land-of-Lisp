@@ -16,3 +16,10 @@
     (is (= next-guess (guess-my-number)))
     (is (> first-guess next-guess))
     (is (= (dec first-guess) (deref big)))))
+
+(deftest bigger-guesses
+  (let [first-guess (guess-my-number)
+        next-guess (bigger)]
+    (is (= next-guess (guess-my-number)))
+    (is (< first-guess next-guess))
+    (is (= (inc first-guess) (deref small)))))
