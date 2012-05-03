@@ -12,3 +12,7 @@
 (defn describe-location
   [location descriptions]
   (descriptions location))
+
+(defn describe-path
+  [[location direction path]]
+  (list 'there 'is 'a path 'going direction 'from 'here.))
