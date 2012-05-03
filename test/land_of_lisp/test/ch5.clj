@@ -8,12 +8,12 @@
   (is (= (describe-location :attic nodes) (nodes :attic))))
 
 (deftest describe-path-test
-  (is (= (describe-path '(garden west door))
-         '(there is a door going west from here.)))
-  (is (= (describe-path '(living-room downstairs ladder))
-         '(there is a ladder going downstairs from here.))))
+  (is (= (describe-path '[garden west door])
+         '[there is a door going west from here.]))
+  (is (= (describe-path '[living-room downstairs ladder])
+         '[there is a ladder going downstairs from here.])))
 
 (deftest describe-paths-test
-  (is (= (describe-paths '((garden west door)
-                           (living-room downstairs ladder)))
-         '(there is a door going west from here. there is a ladder going downstairs from here.))))
+  (is (= (describe-paths '[[garden west door]
+                           [living-room downstairs ladder]])
+         '[there is a door going west from here. there is a ladder going downstairs from here.])))
