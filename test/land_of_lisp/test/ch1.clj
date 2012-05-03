@@ -2,6 +2,17 @@
   (:use [land-of-lisp.ch1])
   (:use [clojure.test]))
 
-(deftest guess-my-number-game
-  (testing "Guess number"
-    (is (= (guess-my-number) (quot (+ small big) 2)))))
+;need to set the default values
+(dosync
+  (ref-set big 100)
+  (ref-set small 1))
+
+(deftest guessing
+  (is (= (guess-my-number) (quot (+ (deref small) (deref big)) 2))))
+
+(deftest smaller-guesses
+  (let [first-guess (guess-my-number)
+        next-guess (smaller)]
+    (is (= next-guess (guess-my-number)))
+    (is (> first-guess next-guess))
+    (is (= (dec first-guess) (deref big)))))
