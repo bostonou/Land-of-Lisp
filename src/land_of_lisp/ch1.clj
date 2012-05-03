@@ -18,3 +18,8 @@
   []
   (dosync (ref-set small (inc (guess-my-number))))
   (guess-my-number))
+
+(defn start-over
+  []
+  (dosync (ref-set big 100) (ref-set small 1))
+  (guess-my-number))

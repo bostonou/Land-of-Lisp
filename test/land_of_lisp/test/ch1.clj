@@ -23,3 +23,10 @@
     (is (= next-guess (guess-my-number)))
     (is (< first-guess next-guess))
     (is (= (inc first-guess) (deref small)))))
+
+(deftest start-over-test
+  (let [new-guess (start-over)
+        guess-again (guess-my-number)]
+    (is (= new-guess guess-again))
+    (is (= (deref big) 100))
+    (is (= (deref small) 1))))
