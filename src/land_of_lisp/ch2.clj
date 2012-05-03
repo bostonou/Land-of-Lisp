@@ -1,4 +1,4 @@
-(ns land-of-lisp.ch1
+(ns land-of-lisp.ch2
   (:require [land-of-lisp.core]))
 
 (def small (ref 1))

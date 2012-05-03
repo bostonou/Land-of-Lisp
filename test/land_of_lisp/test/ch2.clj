@@ -1,5 +1,5 @@
-(ns land-of-lisp.test.ch1
-  (:use [land-of-lisp.ch1])
+(ns land-of-lisp.test.ch2
+  (:use [land-of-lisp.ch2])
   (:use [clojure.test]))
 
 ;need to set the default values
