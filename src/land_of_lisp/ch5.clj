@@ -3,6 +3,9 @@
 
 (def user-location (ref :living-room))
 
+(def object-locations (ref {:living-room '[whiskey bucket]
+                            :garden '[chain frog]}))
+
 (def nodes {:living-room '[you are in the living room. a wizard is snoring loudly on the couch.]
             :garden '[you are in a beautiful garden. there is a well in front of you.]
             :attic '[you are in the attic. there is a giant welding torch in the corner.]})
@@ -10,9 +13,6 @@
 (def edges {:living-room '[[:garden west door] [:attic upstairs ladder]]
             :garden '[[:living-room east door]]
             :attic '[[:living-room downstairs ladder]]})
-
-(def object-locations {:living-room '[whiskey bucket]
-                        :garden '[chain frog]})
 
 (defn find-next-location
   [direction edges]
@@ -52,7 +52,7 @@
   []
   (concat (describe-location (deref user-location) nodes)
           (describe-paths (deref user-location) edges)
-          (describe-objects (deref user-location) object-locations)))
+          (describe-objects (deref user-location) (deref object-locations))))
 
 (defn walk
   [direction]
@@ -63,3 +63,7 @@
       true (do
              (dosync (ref-set user-location location))
              (look)))))
+
+;(defn pickup
+;  [object]
+
