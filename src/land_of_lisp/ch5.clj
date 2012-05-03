@@ -9,6 +9,9 @@
             :garden '[living-room east door]
             :attic '[living-room downstairs ladder]})
 
+(def object-locations {:living-room '[whiskey bucket]
+                        :garden '[chain frog]})
+
 (defn describe-location
   [location descriptions]
   (descriptions location))
@@ -21,3 +24,15 @@
 (defn describe-paths
   [edges]
   (apply #'concat (map #'describe-path edges)))
+
+(defn objects-at
+  [location obj-locs]
+  (obj-locs location))
+
+(defn describe-object
+  [object]
+  (vector 'you 'see 'a object 'on 'the 'floor.))
+
+(defn describe-objects
+  [location obj-locs]
+  (apply #'concat (map #'describe-object (obj-locs location))))
