@@ -22,8 +22,8 @@
     (vector 'there 'is 'a path 'going direction 'from 'here.)))
 
 (defn describe-paths
-  [edges]
-  (apply #'concat (map #'describe-path edges)))
+  [location edges]
+  (apply #'concat (map #'describe-path (edges location))))
 
 (defn objects-at
   [location obj-locs]
