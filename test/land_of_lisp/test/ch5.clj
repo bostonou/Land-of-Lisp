@@ -1,3 +1,8 @@
 (ns land-of-lisp.test.ch5
   (:use [land-of-lisp.ch5])
   (:use [clojure.test]))
+
+(deftest describe-location-test
+  (is (= (describe-location :living-room nodes) (nodes :living-room)))
+  (is (= (describe-location :garden nodes) (nodes :garden)))
+  (is (= (describe-location :attic nodes) (nodes :attic))))
