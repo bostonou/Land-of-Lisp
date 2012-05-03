@@ -17,7 +17,9 @@
   (deftest describe-paths-test
     (is (= (describe-paths :room {:room '[[garden west door]
                                           [living-room downstairs ladder]]})
-          '[there is a door going west from here. there is a ladder going downstairs from here.]))))
+          '[there is a door going west from here. there is a ladder going downstairs from here.]))
+    (is (= (describe-paths :room {:room '[[garden west door]]})
+          '[there is a door going west from here.]))))
 
 (testing "Objects"
   (deftest objects-at-test
