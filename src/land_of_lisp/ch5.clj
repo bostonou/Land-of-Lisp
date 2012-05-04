@@ -3,8 +3,8 @@
 
 (def user-location (ref :living-room))
 
-(def object-locations (ref {:living-room '[whiskey bucket]
-                            :garden '[chain frog]}))
+(def object-locations (ref {:living-room '#{whiskey bucket}
+                            :garden '#{chain frog}}))
 
 (def nodes {:living-room '[you are in the living room. a wizard is snoring loudly on the couch.]
             :garden '[you are in a beautiful garden. there is a well in front of you.]

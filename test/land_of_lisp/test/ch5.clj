@@ -29,12 +29,12 @@
 (testing "Objects"
   (deftest objects-at-test
     (is (= (objects-at :living-room (deref object-locations))
-          '[whiskey bucket]))
+          '#{whiskey bucket}))
     (is (= (objects-at :garden (deref object-locations))
-          '[chain frog])))
+          '#{chain frog})))
 
   (deftest describe-objects-test
     (is (= (describe-objects :living-room (deref object-locations))
            '[you see a whiskey on the floor. you see a bucket on the floor.]))
     (is (= (describe-objects :garden (deref object-locations))
-           '[you see a chain on the floor. you see a frog on the floor.]))))
+           '[you see a frog on the floor. you see a chain on the floor.]))))
