@@ -81,3 +81,7 @@
         (dosync (ref-set object-locations new-obj-locs))
         (list 'you 'are 'now 'carrying 'the object))
       (list 'there 'is 'no object 'for 'you 'to 'pickup))))
+
+(defn inventory
+  []
+  (list :items (apply list (:body (deref object-locations)))))
