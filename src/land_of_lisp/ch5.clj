@@ -14,23 +14,6 @@
             :garden '[[:living-room east door]]
             :attic '[[:living-room downstairs ladder]]})
 
-(defn move-object
-  [from to obj obj-locs]
-  (let [from-objs (obj-locs from)
-        to-objs (obj-locs to)]
-    (when (contains? from-objs obj)
-      (merge obj-locs
-             [from (set (remove (partial = obj) from-objs))]
-             [to (into #{obj} to-objs)]))))
-
-(defn find-next-location
-  [direction edges]
-  (let [[edge & rest] edges]
-    (cond
-      (nil? edge) nil
-      (= (second edge) direction) (first edge)
-      true (find-next-location direction rest))))
-
 (defn describe-location
   [location descriptions]
   (descriptions location))
@@ -44,10 +27,6 @@
   [location edges]
   (apply #'concat (map #'describe-path (edges location))))
 
-(defn objects-at
-  [location obj-locs]
-  (obj-locs location))
-
 (defn describe-object
   [object]
   (vector 'you 'see 'a object 'on 'the 'floor.))
@@ -55,6 +34,23 @@
 (defn describe-objects
   [location obj-locs]
   (apply #'concat (map #'describe-object (obj-locs location))))
+
+(defn find-next-location
+  [direction edges]
+  (let [[edge & rest] edges]
+    (cond
+      (nil? edge) nil
+      (= (second edge) direction) (first edge)
+      true (find-next-location direction rest))))
+
+(defn move-object
+  [from to obj obj-locs]
+  (let [from-objs (obj-locs from)
+        to-objs (obj-locs to)]
+    (when (contains? from-objs obj)
+      (merge obj-locs
+             [from (set (remove (partial = obj) from-objs))]
+             [to (into #{obj} to-objs)]))))
 
 ;non-functional UI
 (defn look
