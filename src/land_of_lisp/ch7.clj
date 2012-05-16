@@ -19,25 +19,24 @@
     (clojure.string/replace (name name-key) #"[^\w]" "_")))
 
 (defn dot-label
-  [label-key label-desc]
-  (let [label-str (str (clojure.string/upper-case (name label-key))
-                       ": " label-desc)]
-        (if (> (count label-str) max-label-len)
-          (str (subs label-str 0 max-label-len) "...")
-          label-str)))
+  [desc]
+  (let [desc-str (str desc)]
+    (if (> (count desc-str) max-label-len)
+      (str (subs desc-str 0 max-label-len) "...")
+      desc-str)))
 
 (defn node-label
   [node]
   (let [[location desc] node
         dot-location (dot-name location)]
-    (str dot-location "[label=\"" (dot-label dot-location desc) "\"];")))
+    (str dot-location "[label=\"" dot-location ": " (dot-label desc) "\"];")))
 
 (defn edge-label
   [from edge-desc]
   (let [[to & desc] edge-desc
         dot-from (dot-name from)
         dot-to (dot-name to)]
-    (str dot-from "[label=\"" (dot-label dot-to (vec desc)) "\"];")))
+    (str dot-from "->" dot-to "[label=\"" (dot-label (vec desc)) "\"];")))
 
 (defn edge-labels
   [edge]
