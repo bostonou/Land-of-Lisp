@@ -63,7 +63,7 @@
   [fname thunk]
   (with-open [wrtr (io/writer fname)]
     (.write wrtr (with-out-str (thunk))))
-  (shell/sh (str "dot -Tpng -O " fname)))
+  (shell/sh "dot" "-Tpng" "-O" fname))
 
 (defn graph->png
   [fname nodes edges]
